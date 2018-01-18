@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">VoiceControl</string>
+
+    <string name="keyword">wakeup</string>
+    <string name="prepare_recognizer_instruction">Wait for the recognizer is set...</string>
+    <string name="start_app_instruction">To start the app say \"wake up\"</string>
+    <string name="commands_instruction">Say \"more\", \"less\" or \"cookie\" and see what happens</string>
+    <string name="recognizer_setup_error">Failed to init recognizer </string>
+    <string name="ui_recognized_word_title">Recognized word:</string>
+</resources>

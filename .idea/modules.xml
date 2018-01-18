@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/VoiceControl.iml" filepath="$PROJECT_DIR$/VoiceControl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aars/aars.iml" filepath="$PROJECT_DIR$/aars/aars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lang_model/lang_model.iml" filepath="$PROJECT_DIR$/lang_model/lang_model.iml" />
+    </modules>
+  </component>
+</project>

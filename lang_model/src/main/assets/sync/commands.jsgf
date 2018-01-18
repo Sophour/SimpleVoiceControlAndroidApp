@@ -1,0 +1,6 @@
+#JSGF V1.0;
+
+grammar commands;
+
+public <item> = more | less | cookie  ;
+
