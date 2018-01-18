@@ -24,11 +24,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private static final String KEYWORD_SEARCH = "key";
     private static final String COMMANDS_SEARCH = "commands";
 
-    // This single line defines the keyword for the entire app
-    // You can change it here or extract it to strings.xml
     private static final String KEYWORD =  "wakeup";
-
-    // Yet our app isn't too big we can keep commands this way though it's ugly
     private static final String MORE_COMMAND = "more";
     private static final String LESS_COMMAND = "less";
     private static final String COOKIE_COMMAND = "cookie";
@@ -62,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         // Let user know that app is loading
         mInstructionsTextView.setText(R.string.prepare_recognizer_instruction);
 
-        // Check if user has given permission to record audio
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PERMISSIONS_REQUEST_RECORD_AUDIO);
@@ -90,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 .setAcousticModel(new File(assetsDir, "en"))  // The name of the dir we've put our model into
                 .setDictionary(new File(assetsDir, "cmudict-en-us.dict"))
                 //.setRawLogDir(assetsDir) // To disable logging of raw audio comment out this call (takes a lot of space on the device)
-                .setBoolean("-remove_noise", true) // Activated by default
+                .setBoolean("-remove_noise", true)
                 .setKeywordThreshold(1e-10f)
                 .getRecognizer();
         mRecognizer.addListener(this);
@@ -131,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         }.execute();
     }
 
-    // We'll switch between recognition modes in this method
-    // To do so we have to restart the recognizer
     private void switchSearch(String whatToSearch) {
         mRecognizer.stop();
 
@@ -142,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 mRecognizer.startListening(whatToSearch);
                 break;
             case COMMANDS_SEARCH:
-                // When the keyword is captured commands listening starts
                 mInstructionsTextView.setText(R.string.commands_instruction);
                 mRecognizer.startListening(whatToSearch, 8000);
                 // If user doesn't speak for 8 secs the app switches back
@@ -164,8 +156,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         if (probableUserSpeech.equals(KEYWORD))
             switchSearch(COMMANDS_SEARCH);
-        // The following is for demonstration matters. Practically useless
-        // You'll see the difference between partial result and final result
         else if (probableUserSpeech.equals(MORE_COMMAND)){
             partialRecognitionsCounter++;
             mPartialCounterTextView.setText(String.valueOf(partialRecognitionsCounter));
@@ -208,8 +198,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onTimeout() {
-        // Switch back to semipassive keyword search
-        // if nothing is spoken around
         switchSearch(KEYWORD_SEARCH);
     }
 
@@ -218,11 +206,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         mInstructionsTextView.setText(e.getMessage());
     }
 
-    /*
-    This is needed to switch the recognizer off in order to release
-    the micro. Otherwise other apps won't be able to access it
-    even if our VoiceControl app is closed.
-     */
     @Override
     public void onDestroy() {
         super.onDestroy();
