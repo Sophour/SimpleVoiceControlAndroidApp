@@ -1,0 +1,2 @@
+# SimpleVoiceControlAndroidApp
+A simple customisable android-app that starts responding to voice commands on a keyword captured. Voice recognition runs offline. It will increase/decrease a displayed counter by 1 on each «more»/«less» command. Voice recognition is provided by PocketSphinx library for Android distributed under BSD-Licence. The app should form a nice neat base for further exploration and enhancement with different functionalities.
